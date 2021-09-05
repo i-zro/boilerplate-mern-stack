@@ -1,15 +1,28 @@
-import React from 'react'
+// import { response } from 'express';
+import React, { useEffect } from 'react'
 import { FaCode } from "react-icons/fa";
+import {API_KEY, API_URL} from "../../Config"; //import 해 옴
 
 function LandingPage() {
+    // 새로 들어간 코드
+    useEffect(() => {
+        const endpoint = `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=1`;
+        fetch(endpoint)
+        .then(response => response.json())
+        .then(response => console.log(response))
+    }, [])
+    
     return (
-        <>
-            <div className="app">
-                <FaCode style={{ fontSize: '4rem' }} /><br />
-                <span style={{ fontSize: '2rem' }}>Let's Start Coding!</span>
+        <div>
+            <div>
+                <h2>Movies by latest</h2>
             </div>
-            <div style={{ float: 'right' }}>Thanks For Using This Boiler Plate by John Ahn</div>
-        </>
+        
+            <div>
+                <button>Load More</button>
+            </div>
+
+        </div>
     )
 }
 
